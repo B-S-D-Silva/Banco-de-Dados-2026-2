@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ipt_distancia_km"> Distância que será percorrida, em quilômetros (KM). <br>
+    <input type="text" id="ipt_velocidade_media"> velocidade média do carro, em quilômetros por hora (KM/h). <br>
+    <button onclick="simular()">simular</button>
+    <div id="exibir_msg"></div>
+</body>
+</html>
+
+<script>
+
+   let combustivel = 25
+
+  function simular () {
+
+   let distanciaKm = Number (ipt_distancia_km.value);
+   let velocidadeMedia = Number (ipt_velocidade_media.value);
+   let tempoMedio = distanciaKm / velocidadeMedia;
+   let combustivelGasto = distanciaKm / 10
+   let percentualGasto = (combustivelGasto / 25) * 100;
+   combustivel = combustivel - combustivelGasto;
+   let percentualRestante = (combustivel / 25) * 100;
+
+   exibir_msg.innerHTML = `Ao percorrer ${distanciaKm}km, em velocidade média de ${velocidadeMedia}km/h, 
+   a viagem durou ${tempoMedio} horas. Ao todo, foram gastos ${combustivelGasto} litros de combustível (${percentualGasto}%). 
+   Restam ${combustivel} litros de combustível (${percentualRestante}%). <br>`
+
+   
+   if (percentualRestante >= 30) {
+  exibir_msg.innerHTML += `<b>Continue a rodar!</b>`;
+   } else {
+  exibir_msg.innerHTML += `<b>É melhor parar para reabastecer!</b>`;
+}
+  };
+
+</script>
